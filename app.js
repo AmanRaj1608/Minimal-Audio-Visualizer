@@ -1,10 +1,8 @@
-// import { hslToRgb } from './hslToRgb.js'
-
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 
-canvas.width = 2000;
-canvas.height = 2000;
+canvas.width = 2500;
+canvas.height = 2500;
 
 // Global Variables
 let analyzer;
@@ -14,9 +12,10 @@ let bufferLength;
 We will need 3 functions
 1. getAudio() to get audio 
 2. drawTimeData() to draw time sine graph
-3. drawFrequency() to draw frequency bars 
+3. drawFrequency() to draw frequency bars
 */
 
+// 1. getAudio() to get audio
 async function getAudio() {
     const stream = await navigator.mediaDevices
         .getUserMedia({ audio: true })
@@ -46,6 +45,7 @@ async function getAudio() {
     drawFrequency(frequencyData);
 }
 
+// 2. drawTimeData() to draw time sine graph
 function drawTimeData(timeData) {
     // Inject the time data into our timeData array
     analyzer.getByteTimeDomainData(timeData);
@@ -55,14 +55,14 @@ function drawTimeData(timeData) {
     // Clear canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     // canvas drawing wave
-    ctx.lineWidth = 10;
+    ctx.lineWidth = 8;
     ctx.strokeStyle = '#ffc600';
     ctx.beginPath();
     const sliceWidth = canvas.width / bufferLength;
     let x = 0;
     timeData.forEach((data, i) => {
         const v = data / 128;
-        const y = (v * canvas.height) / 2;
+        const y = (v * canvas.height) / 2.5;
         if (i === 0) {
             ctx.moveTo(x, y);
         } else {
@@ -76,6 +76,7 @@ function drawTimeData(timeData) {
     requestAnimationFrame(() => drawTimeData(timeData));
 }
 
+// 3. drawFrequency() to draw frequency bars 
 function drawFrequency(frequencyData) {
     // get the frequency data into our frequencyData array
     analyzer.getByteFrequencyData(frequencyData);
@@ -89,8 +90,8 @@ function drawFrequency(frequencyData) {
 
         // Convert the colour to HSL to add different colour
         // https://mothereffinghsl.com/
-        const [h, s, l] = [360 / (percent * 360) - 0.6, 0.9, 0.5];
-        const barHeight = canvas.width * percent * 0.5;
+        const [h, s, l] = [360 / (percent * 360) - 0.5, 0.8, 0.5];
+        const barHeight = canvas.width * percent * 0.6;
         const [r, g, b] = hslToRgb(h, s, l);
         ctx.fillStyle = `rgb(${r},${g},${b})`;
         ctx.fillRect(x, canvas.width - barHeight, barWidth, barHeight);
@@ -104,6 +105,7 @@ function drawFrequency(frequencyData) {
 
 getAudio();
 
+// This is an optional function helps to convert HSL to RGB
 function hslToRgb(h, s, l) {
     let r;
     let g;

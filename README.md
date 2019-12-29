@@ -9,14 +9,21 @@
 </p>
 <hr>
 
-This audio visualizer makes a real-time frequency and time-domain analysis information. Have you ever watched NCS video and like watching Music Wave on your screen? Well, now you can do it.
+<p align="center"><img src="./example.gif" width="300"></p>
+
+
+This audio visualizer makes a real-time frequency and time-domain analysis information. Have you ever watched NCS videos? Do you like watching Waves dancing on your screen while listening to music? Well, now you can do it.
 
 Enjoy your own music with Minimal Audio Visualizer. Simply play music and open https://amanraj1608.github.io/Minimal-Audio-Visualizer/
+
+
+Code have explanations and easy to understand. Feel free to add a feature and make a PR.
+
+**Caution:** Don't increase the fftSize greater than 2^12 unless you have Mac Cheese Grater 😆
 
 ---
 ### TODO 📝
 - Add Button to add control number of bars.
-(Don't increase the WIDTH and HEIGHT unless you have Mac cheese grater 😆)
 - Add more Designs
 ---
 ### How it works?
@@ -41,8 +48,6 @@ I found these MDN links useful
 - https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode/fftSize 
 - https://stackoverflow.com/questions/14789283/what-does-the-fft-data-in-the-web-audio-api-correspond-to
 
-
-<p align="center"><img src="./example.png" width="800"></p>
 
 ---
 <p align="center"> Made with ❤️ by <a href="https://github.com/amanraj1608">Aman Raj</a></p>
