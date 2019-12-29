@@ -1,0 +1,16 @@
+html {
+    margin: 0;
+    background: black;
+}
+
+canvas {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: 1fr;
+    margin: 0;
+}
